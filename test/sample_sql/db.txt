@@ -1,3 +1,0 @@
-INSERT INTO account 
-(id,name,url,priority) 
-VALUES(1,labo_code,https://twitter.com/labo_code,0);

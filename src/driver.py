@@ -15,7 +15,7 @@ def init_driver(profile_path,profile_name):
     ##コメント外すとバックグラウンドで実行される
     options=EdgeOptions()
     options.use_chromium=True #これを設定しないとアカウントを保持できない
-    options.add_argument("--headless=new") #selenium4.8以降のheadlessはこうやる
+    # options.add_argument("--headless=new") #selenium4.8以降のheadlessはこうやる
     # options.add_argument('--no-sandbox')
     options.add_argument(f"--user-data-dir={profile_path}")
     options.add_argument(f"--profile-directory={profile_name}")

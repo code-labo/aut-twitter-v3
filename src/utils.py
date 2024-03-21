@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 
 class Color:
     BLACK          = '\033[30m'#(文字)黒
@@ -33,3 +34,41 @@ def add_single_quote(s:str):
 def print_view(table_name:str,table:pd.DataFrame,color:Color):
     msg="-"*40+f"{color}{table_name}{Color.RESET}"+"-"*40
     print(f"{msg}\n{table}\n{'-'*(len(msg)-len(f'{color}{Color.RESET}'))}")
+
+def print_tweet(header:str,tweet_info:dict,color:Color):
+
+    msg=""
+    msg+="-"*40+f"{color}{header}{Color.RESET}"+"-"*40
+    for key,val in tweet_info.items():
+        if not key=="tweet_text":
+            msg+=("\n"+(f"{key} : {val}"))
+        else:
+            msg+=("\n"+(f"{key} : \n{val}"))
+    msg+=("\n"+f"{'-'*80+'-'*(len(header))}")
+
+    print(msg)
+
+    return msg
+
+def load_filter_words(txt_file_path:str):
+    with open(txt_file_path,"r",encoding="utf-8") as f:
+        lines=[line.split(",") for line in f.read().splitlines()]
+    filter_words=[]
+    for line in lines:
+        filter_words+=line
+    return filter_words
+
+def load_logs(log_file_path):
+
+    if not os.path.exists(log_file_path):
+        with open(log_file_path,"w",encoding="utf-8") as f:
+            f.write("")
+
+    with open(log_file_path,"r",encoding="utf-8") as f:
+        log="".join(f.readlines())
+        
+    return log
+
+def write_logs(log_file_path,log):
+    with open(log_file_path,"w",encoding="utf-8") as f:
+        f.write(log)
