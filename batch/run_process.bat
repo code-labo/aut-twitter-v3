@@ -16,6 +16,6 @@ rem 仮想環境をアクティブにする
 call activate scraping-env 
 
 rem 検索＆フォロワーのツイートを取得
-python app/search_and_favo.py
+python app/process.py
 
 @REM pause

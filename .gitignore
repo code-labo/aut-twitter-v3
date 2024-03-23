@@ -1,2 +1,4 @@
 envs.py
 *.csv
+config*
+/log
