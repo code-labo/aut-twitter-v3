@@ -19,6 +19,7 @@ pip install -r requirements.txt
 その後、以下のような形式でファイル内容を書き加える  
 以下の要素については後で説明を加える
 - user_config
+- gmail_config
 - html_css_value
 
 ~~~jsonc
@@ -91,6 +92,8 @@ pip install -r requirements.txt
 
 #### user_configについて
 これはedgeやchromeでログインしたままアクセスするために必要なユーザー情報である.  
+また, ユーザーはWebブラウザのdefaultユーザーはダメ  
+新しくアカウントを作る必要あり
 - `profile_name, profile_path`  
    ブラウザのアドレスバー上で`edge://version/`と入力すれば確認できる.  
 
@@ -100,6 +103,18 @@ pip install -r requirements.txt
 - `is_headless`  
   `true`:バックグラウンドで稼働(確認はターミナルのみ)  
   `false`:自動で稼働している様子を確認することができる
+
+#### gmail_configについて
+エラー通知ようのメールを登録する  
+gmailは自前アプリのアクセスは基本的に制限されているので, 2段階認証設定＆アプリ専用パスワード設定をしないといけない
+- sender  
+  送信元のメールアドレス  
+  このアドレスで2段階認証＆アプリパスワードの設定をする
+- password  
+  senderのアプリパスワード
+- recipient  
+  受け取る側のアドレス  
+  こっちは特に何もする必要ない
 
 #### html_css_valueについて
 これは要素をfindするために使用するcssクラスを指定している  
