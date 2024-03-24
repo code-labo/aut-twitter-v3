@@ -114,7 +114,8 @@ class AutoTwitter():
         element_search.send_keys(Keys.ENTER)
         ###END
 
-        time.sleep(random.uniform(1.0,2.0))
+        time.sleep(abs(random.gauss(mu=2,sigma=0.8)))
+        # time.sleep(random.uniform(1.0,2.0))
 
         print("Seaching OK")
         
@@ -147,7 +148,8 @@ class AutoTwitter():
                 break
 
         print(f"moved to {tab_name} tab")
-        time.sleep(random.uniform(1.0,2.0))
+        time.sleep(abs(random.gauss(2,0.8)))
+        # time.sleep(random.uniform(1.0,2.0))
 
 
     def scroll_page(self,speed=5, is_up=False)->int:
@@ -170,8 +172,9 @@ class AutoTwitter():
                 top_height=0
             self.driver.execute_script(f"window.scrollTo(0,{top_height});")
         
-        sleep_time=random.uniform(0.5,1.0) #ランダムに停止
-        time.sleep(sleep_time)
+        sleep_time=random.gauss(1.5,0.5) #ランダムに停止
+        # sleep_time=random.uniform(0.5,1.0) #ランダムに停止
+        time.sleep(abs(sleep_time))
 
 
     
@@ -325,7 +328,7 @@ class AutoTwitter():
                 if is_favo:
                     self.actions.move_to_element(elm)
                     time.sleep(random.uniform(0.1,0.2))
-                    # elm.click() #いいね
+                    elm.click() #いいね
                     time.sleep(random.uniform(0.5,1.5)) #いいねしたらちょっと待つ
                     action_state="favo"
                 else:
@@ -419,7 +422,8 @@ class AutoTwitter():
 
     def scroll_favo(self, favo_num, favo_p,max_process_seconds,filter_words:list,
                     log_file_path,html_favo_class,html_text_class,html_back_class,
-                    direct_favo_p=0.5,favo_onpage_p=0.5,view_comment_p=0.5,jumpto_account_p=0.5
+                    direct_favo_p=0.5,favo_onpage_p=0.5,view_comment_p=0.5,jumpto_account_p=0.5,
+                    random_scrollup_p=0.1
                     ):
         """
         人間の挙動と同じように, 現在のページをスクロールしながらfavoしていく
@@ -527,6 +531,8 @@ class AutoTwitter():
                                                     by=By.TAG_NAME,value="article"
                                                 )[0]
                                 args=(article_onpage,)+args
+                            if "favo" in func_msg:
+                                favo_count+=1
                             func(*args) 
                             msg+=(func_msg+"/")
                         if len(msg)>0:
@@ -555,8 +561,15 @@ class AutoTwitter():
                         break
                 #>> 最初のページに戻れてなかったら戻るボタン押しまくる >>
                     
-                self.scroll_page(speed=4) #finallyにスクロールを持ってくることで, エラーはいたときも強制的にスクロールできる
-        
+
+                #>> finallyにスクロールを持ってくることで, エラーはいたときも強制的にスクロールできる >>
+                if random.random()<random_scrollup_p:
+                    self.scroll_page(speed=4,is_up=True) #たまに上にスクロールする
+                else:
+                    self.scroll_page(speed=4)
+                #>> finallyにスクロールを持ってくることで, エラーはいたときも強制的にスクロールできる >>
+
+
         write_logs(log_file_path=log_file_path,log=log_txt)
         
                 
