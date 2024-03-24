@@ -94,13 +94,13 @@ pip install -r requirements.txt
 これはedgeやchromeでログインしたままアクセスするために必要なユーザー情報である.  
 また, ユーザーはWebブラウザのdefaultユーザーはダメ  
 新しくアカウントを作る必要あり
-- `profile_name, profile_path`  
-   ブラウザのアドレスバー上で`edge://version/`と入力すれば確認できる.  
+- profile_name, profile_path  
+  ブラウザのアドレスバー上で`edge://version/`と入力すれば確認できる.  
 
-- `account_name`  
+- account_name  
   twitterのアカウントID（@の後ろの記号）を設定する  
 
-- `is_headless`  
+- is_headless  
   `true`:バックグラウンドで稼働(確認はターミナルのみ)  
   `false`:自動で稼働している様子を確認することができる
 
