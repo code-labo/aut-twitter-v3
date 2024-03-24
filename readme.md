@@ -21,7 +21,7 @@ pip install -r requirements.txt
 - user_config
 - html_css_value
 
-~~~json
+~~~jsonc
 {"auto_twitter_config":{
 
     "user_config":{
